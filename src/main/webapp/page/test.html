@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular</title>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+    <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+    <script>
+        var city = remote_ip_info['city']
+
+    </script>
+</head>
+<body>
+<div data-ng-app="myApp" data-ng-controller="myCtrl">
+    <p>名字 : <input type="text" data-ng-model="name"></p>
+    <h1>Hello <span ng-bind="name"></span></h1>
+
+    <p>密码 : <input type="text" data-ng-model="password"></p>
+    <h1>Hello {{password}}</h1>
+    <br/>
+    <h1>姓名-密码 : {{name+'-'+password}}</h1>
+    <h1 data-ng-init="users={user:'xzh',pwd:'2099940454'}" style="color: red" >姓名-密码 : {{users.user+'-'+users.pwd}}</h1>
+    <h1 data-ng-init="userss=['test','xzh','pwd',20999]" style="color: blue" >姓名-密码 : {{userss[0]+'-'+userss[3]}}</h1>
+    <p>使用 ng-repeat 来循环数组</p>
+    <ul data-ng-init="names=[
+                    {name:'Jani',country:'Norway'},
+                    {name:'Hege',country:'Sweden'},
+                    {name:'Kai',country:'Denmark'}]">
+        <li data-ng-repeat="x in names">
+            {{ x.name }}
+        </li>
+    </ul>
+    <!-- directive: runoob-directive -->
+    <test style="color: red"></test>
+    <form name="myForm">
+        Email:
+        <input type="email" name="myAddress" data-ng-model="text">
+        <span style="color: red" data-ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    </form>
+</div>
+<!--<div ng-app="" ng-init="user='test';pwd='40454'">
+    姓名-密码 : {{user+'-'+pwd}}
+</div>-->
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myCtrl',function ($scope) {
+        $scope.name='xzh';
+        $scope.password='20999';
+    });
+    app.directive("test", function() {
+        return {
+            template : "<h1>自定义指令!</h1>"
+        };
+    });
+    app.directive("runoobDirective", function() {
+        return {
+            restrict : "EACM",
+            replace : true,
+            template : "<h1>自定义指令!</h1>"
+        };
+    });
+</script>
+</body>
+</html>

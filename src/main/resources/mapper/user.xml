@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springdemo.dao.UserDao">
+    <select id="findAllUser" resultType="com.example.springdemo.ectity.User">
+        select * from user;
+    </select>
+    <delete id="deleteUser">
+        delete from user where uid = #{uid}
+    </delete>
+    <insert id="insertUser" parameterType="com.example.springdemo.ectity.User">
+        insert into user (uid,uimg,uname,unickname,upassword) values (#{uid},#{uimg},#{uname},#{unickname},#{upassword})
+    </insert>
+    <select id="findUserById" resultType="com.example.springdemo.ectity.User">
+        select * from user where uid = #{uid}
+    </select>
+    <update id="updateUser" parameterType="com.example.springdemo.ectity.User">
+        update user set uimg = #{uimg},unickname = #{unickname},uname = #{uname},upassword = #{upassword} where uid = #{uid}
+    </update>
+</mapper>
